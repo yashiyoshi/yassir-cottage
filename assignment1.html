@@ -1,0 +1,207 @@
+<!DOCTYPE HTML>
+
+<html>
+
+	<head>
+		<title>Yassir's Cottage</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<link rel="icon" href="images/tab icon.png">
+	</head>
+
+    <body class="is-preload">
+        
+        <div id="wrapper">
+
+            <div id="main">
+           <article id="home" class="panel">
+            <header>
+            <h1>Conversions</h1>
+            <h3>Celsius to Fahrenheight</h3>
+            <form>
+                <div>
+                    <div class="row">
+                        <div class="col-6 col-12-small">
+                            <input type="text" name="Cel" placeholder="Celsius" id="cel" onkeyup="compute_celfah()">
+                        </div>
+                        <div class="col-6 col-12-medium">
+                            <input type="text" name="Fah" placeholder="Fahrenheight" id="fah" readonly>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <h3>Fahrenheight to Celsius</h3>
+            <form>
+                <div>
+                    <div class="row">
+                        <div class="col-6 col-12-medium">
+                            <input type="text" name="name" placeholder="Fahrenheight" id="fah1" onkeyup="compute_fahcel()">
+                        </div>
+                        <div class="col-6 col-12-medium">
+                            <input type="text" name="email" placeholder="Celsius" id="cel1" readonly>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <h3>Meters to Feet</h3>
+            <form>
+                <div>
+                    <div class="row">
+                        <div class="col-6 col-12-medium">
+                            <input type="text" name="Meters" placeholder="Meters" id="mt" onkeyup="compute_mtft()">
+                        </div>
+                        <div class="col-6 col-12-medium">
+                            <input type="text" name="Feet" placeholder="Feet" id="ft" readonly>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <h3>Feet to Meters</h3>
+            <form>
+                <div>
+                    <div class="row">
+                        <div class="col-6 col-12-medium">
+                            <input type="text" name="Feet" placeholder="Feet" id="ft1" onkeyup="compute_ftmt()">
+                        </div>
+                        <div class="col-6 col-12-medium">
+                            <input type="text" name="Meters" placeholder="Meters" id="mt1" readonly>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+
+                <a href="index.html#work">
+                    <button>
+                        Go Back
+                    </button>
+                </a>
+            </header>
+            </article>
+
+
+
+
+            
+            </div>
+        </div>
+
+		<!-- Scripts -->
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/browser.min.js"></script>
+        <script src="assets/js/breakpoints.min.js"></script>
+        <script src="assets/js/util.js"></script>
+        <script src="assets/js/main.js"></script>
+
+
+        <!--Solve for Celsius to Fahrenheight-->
+        <script>
+            function compute_celfah(){
+
+            let x;
+
+            // Get input for Cel to Fah
+            x = document.getElementById("cel").value
+
+            // Computation for Cel to Fah
+            let z = (x * 9/5) + 32
+
+            // Display
+            document.getElementById("fah").value=z + "°F";
+
+
+            // If the input is empty, placeholder goes back
+                if(x == ''){
+                    document.getElementById("fah").value = '';
+                }
+
+
+            }
+
+        </script>
+
+        <!--Solve for Fahrenheight to Celsius-->
+        <script>
+            function compute_fahcel(){
+
+            let x;
+
+            // Get input for Fah to Cel
+            x = document.getElementById("fah1").value
+
+            // Computation for Cel to Fah
+            let z = (x - 32) * 5/9;
+
+            // Display
+            document.getElementById("cel1").value=z + "°C";
+
+
+            // If the input is empty, placeholder goes back
+                if(x == ''){
+                    document.getElementById("cel1").value = '';
+                }
+
+
+            }
+
+        </script>
+
+        <!--Solve for Meters to Feet-->
+        <script>
+            function compute_mtft(){
+
+                let x;
+
+                // Get input for Meters to Feet
+                x = document.getElementById("mt").value
+
+                // Computation for Meters to Feet
+                let z = x * 3.28084;
+
+                // Display
+                document.getElementById("ft").value=z + " ft";
+
+                
+                // If the input is empty, placeholder goes back
+                if(x == ''){
+                        document.getElementById("ft").value = '';
+                    }
+            }
+
+        </script>
+
+        <!--Solve for Feet to Meters-->
+        <script>
+            function compute_ftmt(){
+
+                let x;
+
+                // Get input for Meters to Feet
+                x = document.getElementById("ft1").value
+
+                // Computation for Meters to Feet
+                let z = x / 3.28084;
+
+                // Display
+                document.getElementById("mt1").value=z + " m";
+
+                
+                // If the input is empty, placeholder goes back
+                if(x == ''){
+                        document.getElementById("mt1").value = '';
+                    }
+            }
+
+        </script>
+
+
+
+
+
+
+
+    </body>
+
+</html>
