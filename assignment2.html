@@ -73,26 +73,24 @@
                 }
                 else if(x > 250000 && x <= 400000){
                     y = (x - 250000) * 0.2;
-                    document.getElementById("tax").value="₱ " + y.toFixed(2)
+                    document.getElementById("tax").value="₱ " + y.toLocaleString()
                 }
                 else if(x > 400000 && x <= 800000){
                     y = (x - 400000) * 0.25 + 30000;
-                    document.getElementById("tax").value="₱ " + y.toFixed(2)
+                    document.getElementById("tax").value="₱ " + y.toLocaleString()
                 }
                 else if(x > 800000 && x <= 2000000){
                     y = (x - 800000) * 0.3 + 130000;
-                    document.getElementById("tax").value="₱ " + y.toFixed(2)
+                    document.getElementById("tax").value="₱ " + y.toLocaleString()
                 }
                 else if(x > 2000000 && x <= 8000000){
                     y = (x - 2000000) * 0.32 + 490000;
-                    document.getElementById("tax").value="₱ " + y.toFixed(2)
+                    document.getElementById("tax").value="₱ " + y.toLocaleString()
                 }
                 else if(x > 8000000){
                     y = (x - 8000000) * 0.35 + 2410000;
-                    document.getElementById("tax").value="₱ " + y.toFixed(2)
+                    document.getElementById("tax").value="₱ " + y.toLocaleString()
                 }
-
-
 
 
                 
