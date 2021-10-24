@@ -1,0 +1,121 @@
+<!DOCTYPE HTML>
+
+<html>
+
+	<head>
+		<title>Yassir's Cottage</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<link rel="icon" href="images/tab icon.png">
+	</head>
+
+    <body class="is-preload">
+        
+        <div id="wrapper">
+
+            <div id="main">
+           <article id="home" class="panel">
+            <header>
+            <h1>Income Tax Calculator</h1>
+            <h3></h3>
+            <form>
+                <div>
+                    <div class="row">
+                        <div class="col-6 col-12-small">
+                            <input type="text" name="Income" placeholder="Income" id="income" onkeyup="compute_tax()">
+                        </div>
+                        <div class="col-6 col-12-medium">
+                            <input type="text" name="Tax" placeholder="Tax Payable Amount" id="tax" readonly>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+
+                <a href="index.html#work">
+                    <button>
+                        Go Back
+                    </button>
+                </a>
+            </header>
+            </article>
+
+
+
+
+            
+            </div>
+        </div>
+
+		<!-- Scripts -->
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/browser.min.js"></script>
+        <script src="assets/js/breakpoints.min.js"></script>
+        <script src="assets/js/util.js"></script>
+        <script src="assets/js/main.js"></script>
+
+        <!-- Computation for Tax -->
+        <script>
+            function compute_tax(){
+
+                let x, y;
+
+                // Fetch the value of income
+                x = document.getElementById("income").value
+
+
+                // Computation for Tax
+                if(x < 250000){
+                    y = x * 0;
+                    document.getElementById("tax").value="₱ "+ y
+                }
+                else if(x > 250000 && x <= 400000){
+                    y = (x - 250000) * 0.2;
+                    document.getElementById("tax").value="₱ " + y.toFixed(2)
+                }
+                else if(x > 400000 && x <= 800000){
+                    y = (x - 400000) * 0.25 + 30000;
+                    document.getElementById("tax").value="₱ " + y.toFixed(2)
+                }
+                else if(x > 800000 && x <= 2000000){
+                    y = (x - 800000) * 0.3 + 130000;
+                    document.getElementById("tax").value="₱ " + y.toFixed(2)
+                }
+                else if(x > 2000000 && x <= 8000000){
+                    y = (x - 2000000) * 0.32 + 490000;
+                    document.getElementById("tax").value="₱ " + y.toFixed(2)
+                }
+                else if(x > 8000000){
+                    y = (x - 8000000) * 0.35 + 2410000;
+                    document.getElementById("tax").value="₱ " + y.toFixed(2)
+                }
+
+
+
+
+                
+                // If the input is empty, placeholder goes back
+                if(x == ''){
+                    document.getElementById("tax").value = '';
+                }
+
+            }
+
+
+
+
+
+
+        </script>
+ 
+
+
+
+
+
+
+    </body>
+
+</html>
