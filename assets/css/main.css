@@ -2198,4 +2198,13 @@ img.animated-gif{
 
 h3 {
 	margin-top: 50px;
-  }
+}
+
+h4 {
+margin-top: 20px;
+font-size: 25px;
+}
+
+button {
+	margin-top: 10px;
+}

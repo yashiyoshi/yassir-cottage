@@ -1,0 +1,150 @@
+<!DOCTYPE HTML>
+
+<html>
+
+	<head>
+		<title>Yassir's Cottage</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<link rel="icon" href="images/tab icon.png">
+	</head>
+
+    <body class="is-preload">
+        
+        <div id="wrapper">
+
+            <div id="main">
+           <article id="home" class="panel">
+            <header>
+            <h1>Nth Factorial, Sum and Average</h1>
+            <h3></h3>
+            <form>
+                <div>
+                    <div class="row">
+                        <div class="col-6 col-12-small">
+                            <input type="text" name="Input" placeholder="Input" id="input">
+                        </div>
+                        <div class="col-6 col-12-small">
+                            <button type="button" onclick="compute_answer();compute_sum();compute_average()">Solve</button>
+                        
+                        </div>
+                    </div>
+                    <h4 id="factorial"></h4>
+                    <h4 id="sum"></h4>
+                    <h4 id="average"></h4>
+                </div>
+
+            </form>
+
+
+                <a href="index.html#work">
+                    <button>
+                        Go Back
+                    </button>
+                </a>
+            </header>
+            </article>
+
+
+
+
+            
+            </div>
+        </div>
+
+		<!-- Scripts -->
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/browser.min.js"></script>
+        <script src="assets/js/breakpoints.min.js"></script>
+        <script src="assets/js/util.js"></script>
+        <script src="assets/js/main.js"></script>
+
+
+        <!-- Solve for Factorial -->
+        <script>
+            function compute_answer(){
+
+                let x;
+
+                // Fetch the Value of Input
+                x = document.getElementById("input").value*1
+
+                // Compute for Nth Factorial Using While Loop
+                let counter = 1;
+                let fact = 1;
+
+
+
+                while(counter <= x){
+                    fact = fact * counter;
+                    counter++
+                }
+
+                // Print
+                document.getElementById("factorial").innerHTML='The Nth factorial of ' +x+ ' is ' +fact.toLocaleString();
+
+            }
+        </script>
+
+        <!-- Solve for Sum -->
+        <script>
+            function compute_sum(){
+
+                let x;
+
+                // Fetch
+                x = document.getElementById("input").value*1
+
+                // Compute Sum Using Do While Loop
+                let counter = 1;
+                let sum = 0;
+
+                do{
+                    sum = sum + counter;
+
+                    counter++
+                }
+                while(counter <= x);
+
+                // Print
+                document.getElementById("sum").innerHTML='The sum of the first ' +x+ ' numbers is ' +sum.toLocaleString();
+
+            }
+
+        </script>
+        
+        <!-- Solve for Average -->
+        <script>
+            function compute_average(){
+
+                let x;
+
+                // Fetch
+                x = document.getElementById("input").value*1
+
+                let average = 0;
+
+                for(counter = 1; counter <= x; counter++){
+
+                    average = average + counter;
+
+                    if(counter == x){
+                        average = average / x;
+                    }
+
+                }
+
+                document.getElementById("average").innerHTML='The average of the first ' +x+ ' numbers is ' +average.toLocaleString();
+            }
+        </script>
+
+
+
+
+
+
+    </body>
+
+</html>
