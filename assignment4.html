@@ -1,0 +1,378 @@
+<!DOCTYPE HTML>
+
+<html>
+
+	<head>
+		<title>Yassir's Cottage</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<link rel="icon" href="images/tab icon.png">
+
+        
+	</head>
+
+    <body class="is-preload" onload="init_cart()">
+        
+        <div id="wrapper">
+
+            <div id="main">
+           <article id="home" class="panel">
+            <header>
+            <h1>Simple Payroll</h1>
+            <h3></h3>
+            <form>
+                <div>
+                    <div class="row">
+                        <div class="col-6 col-12-small">
+                            <input type="text" name="Employee" placeholder="Employee Name" id="employee_name">
+                        </div>
+                        <div class="col-6 col-12-small">
+                            <input type="text" name="Days_worked" placeholder="Days Worked" id="days_worked" >
+                        </div>
+                        <div class="col-6 col-12-small">
+                            <input type="text" name="Daily_rate" placeholder="Daily Rate" id="daily_rate">
+                        </div>
+                        <div class="col-6 col-12-small">
+                            <input type="text" name="Deduct_amount" placeholder="Deduction Amount" id="deduction_amount" >
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div>
+                <button class="button4" onclick="empty_checker()">Add Employee</button>
+            </div>
+            <div>
+                <p id="cart"></p>
+            </div>
+            <form>
+                <h3>Number of Employees&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspDelete Employee</h3>
+                <div class="row">
+                    <div class="col-12-small">
+                        <input type="text" id="numberOfEmployees" readonly>
+                    </div>
+                    <div class="col-12-small">
+                        <input type="text" id="deleteEmployee" placeholder="Number of Employee">
+                    </div>
+                </div>
+            </form>
+            <div>
+                <div>
+                    <button class="button2" onclick=clear_cart()>Clear Payroll</button2>
+                    <button class="button3" onclick=delete_employee()>Delete</button>
+                </div>
+
+            </div>
+
+
+
+            <a href="index.html#work">
+                <button>
+                    Go Back
+                </button>
+            </a>
+
+
+            </div>
+
+            </header>
+            </article>
+
+
+
+
+            
+            </div>
+        </div>
+
+		<!-- Scripts -->
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/browser.min.js"></script>
+        <script src="assets/js/breakpoints.min.js"></script>
+        <script src="assets/js/util.js"></script>
+        <script src="assets/js/main.js"></script>
+
+
+        <script>
+            // Initialize Cart
+            function init_cart(){
+
+                cart=[];
+                document.getElementById("numberOfEmployees").value=cart.length;
+                document.getElementById("cart").innerHTML="";
+
+            }
+
+            // Clear Cart
+            function clear_cart(){
+
+                init_cart();
+                cart = [];
+                cart_deduction = [];
+                cart_grosstotal = [];
+                cart_netPayTotal = [];
+            }
+
+
+            // Check for Empty Spaces
+
+            function empty_checker(){
+
+            var todelete;
+            check_employeeName = document.getElementById("employee_name");
+            check_daysWorked = document.getElementById("days_worked");
+            check_dailyRate = document.getElementById("daily_rate");
+            check_deductAmount = document.getElementById("deduction_amount");
+
+            if((check_dailyRate.value.trim() === "") || (check_daysWorked.value.trim() === "") || (check_deductAmount.value.trim() === "") || check_employeeName.value.trim() === ""){
+                todelete = alert("Fill in the empty spaces!")
+            }
+            else
+            add_cart()
+
+            }
+
+
+
+
+
+
+            // Add to Cart & Computation
+            function add_cart(){
+                var cartitem = {
+                    "numberOfEmployees": "1",
+                    "nameOfEmployee": "",
+                    "daysWorked": "",
+                    "dailyRate": "",
+                    "deductAmount": "",
+                    "grossPay": "",
+                    "netPay": "",
+                    "grossPay_total": "",
+                    "deduction_total": "",
+                    "netPay_total": "",
+                }
+
+
+                cartitem.numOfEmployees=document.getElementById("numberOfEmployees").value;
+                cartitem.nameOfEmployee=document.getElementById("employee_name").value;
+                cartitem.daysWorked=document.getElementById("days_worked").value;
+                cartitem.dailyRate=document.getElementById("daily_rate").value;
+                cartitem.deductAmount=document.getElementById("deduction_amount").value;
+
+
+                // Computation
+
+                var gross_pay, net_pay, d_worked, daily_rate, deduction_amount;
+
+                d_worked = document.getElementById("days_worked").value;
+                daily_rate = document.getElementById("daily_rate").value;
+                deduction_amount = document.getElementById("deduction_amount").value*1;
+
+                gross_pay = Math.round(d_worked * daily_rate*100)/100;
+
+                net_pay = gross_pay - deduction_amount;
+
+
+                console.log(gross_pay);
+                console.log(net_pay);
+
+                cartitem.grossPay=gross_pay;
+                cartitem.netPay=net_pay;
+
+                
+
+
+                cart_grosstotal.push(gross_pay);
+                cart_deduction.push(deduction_amount);
+                cart_netPayTotal.push(net_pay);
+
+
+                // Solve for Total GROSS PAY
+
+                const reducer = (previousValue, currentValue) => previousValue + currentValue;
+                cart.grossPay_total = cart_grosstotal.reduce(reducer);
+
+
+                // Solve for Total DEDUCTION AMOUNT
+
+                cart.deduction_total = cart_deduction.reduce(reducer);
+                console.log(cart_deduction)
+
+
+                // Solve for Total NET PAY
+
+                cart.netPay_total = cart_netPayTotal.reduce(reducer);
+
+
+
+                cart.push(cartitem);
+
+                console.log(cart)
+                console.log(cart_grosstotal)
+
+                document.getElementById("numberOfEmployees").value=cart.length;
+
+                console.log(cart.length);
+
+                showcart();
+                
+
+
+
+            }
+
+            // Delete Item From the Cart
+            function delete_employee(){
+
+                var todelete;
+                var employeenumber;
+
+                employeenumber=document.getElementById("deleteEmployee").value;
+
+                todelete=confirm("Are you sure you want to delete Employee no. " +employeenumber+" ?")
+
+                if(todelete){
+                    cart.splice(employeenumber-1,1);
+                    document.getElementById("numberOfEmployees").value=cart.length;
+
+                    cart_grosstotal.splice(employeenumber-1,1);
+                    cart.grossPay_total = cart_grosstotal;
+
+                    cart_deduction.splice(employeenumber-1,1);
+                    cart.deduction_total = cart_deduction;
+
+                    cart_netPayTotal.splice(employeenumber-1,1);
+                    cart.netPay_total = cart_netPayTotal;
+
+
+
+                    
+                    const reducer = (previousValue, currentValue) => previousValue + currentValue;
+                    cart.grossPay_total = cart_grosstotal.reduce(reducer);
+                    cart.deduction_total = cart_deduction.reduce(reducer);
+                    cart.netPay_total = cart_netPayTotal.reduce(reducer);
+
+
+                    console.log(cart.grossPay_total)
+
+                    showcart();
+
+                }
+            }
+
+
+            // Show Cart
+            function showcart(){
+
+            var i,l,carttext,totalamount,ln;
+            var theader,tbody,tb,tfooter;
+
+            // Generate table header;
+
+            theader ="<thead>";
+
+            theader+="<tr>";
+
+            theader+="<th>Employee No.</th>";
+
+            theader+='<th>Employee Name</th>';
+
+            theader+="<th>Days Worked</th>";
+
+            theader+='<th>Daily Rate</th>';
+
+            theader+="<th>Gross Pay</th>";
+
+            theader+="<th>Deduction Amount</th>";
+
+            theader+="<th>Net Pay</th>";
+
+            theader+="</tr>";
+
+            theader+="</thead>";
+
+
+
+            // Generate Table Body
+
+            l = cart.length;
+
+            for (i=0,totalamount=0,carttext="",tbody='';i<l;i++){
+
+                ln=i+1;    
+
+                tbody += "<tr>"
+
+                    +'<td>'+ln+' </td>'
+
+                    +'<td>'+cart[i].nameOfEmployee+' </td>'
+
+                    +'<td style="text-align:right">'+cart[i].daysWorked.toLocaleString()+'</td>'
+
+                    +'<td style="text-align:right">'+cart[i].dailyRate.toLocaleString()+'</td>'
+
+                    +'<td style="text-align:right">'+cart[i].grossPay.toLocaleString()+'</td>'
+
+                    +'<td style="text-align:right">'+cart[i].deductAmount.toLocaleString()+'</td>'
+
+                    +'<td style="text-align:right">'+cart[i].netPay.toLocaleString()+'</td>'    
+
+                    +"</tr>";
+
+            }
+
+            // Generate table footer;
+
+            tfooter ="<tfoot>";
+
+            tfooter+="<tr>";
+
+            tfooter+='<th style="text-align:left">'+cart.length+'</th>';
+
+            tfooter+='<th></th>';
+
+            tfooter+='<th></th>';
+
+            tfooter+='<th></th>';
+
+            tfooter+='<th style="text-align:right">'+cart.grossPay_total.toLocaleString()+'</th>';
+
+            tfooter+='<th style="text-align:right">'+cart.deduction_total.toLocaleString()+'</th>';
+
+            tfooter+='<th style="text-align:right">'+cart.netPay_total.toLocaleString()+'</th>';
+
+            tfooter+="</tr>";
+
+            tfooter+="</tfoot>";
+
+
+
+
+
+            console.log(theader+tbody+tfooter);
+
+            document.getElementById("cart").innerHTML=
+
+            '<table>'+theader+tbody+tfooter+'</table>';
+
+
+
+
+
+        }           
+
+
+            // Global variable
+
+            var cart = []; 
+            var cart_grosstotal = [];
+            var cart_deduction = [];
+            var cart_netPayTotal = [];
+
+
+        </script>
+
+    </body>
+
+</html>

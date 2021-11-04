@@ -1,0 +1,66 @@
+<div class="row">
+    <div class="col-6 col-12-small">
+        <input type="text" name="Employee" placeholder="Employee Name" id="employee_name">
+    </div>
+    <div class="col-6 col-12-small">
+        <input type="text" name="Days_worked" placeholder="Days Worked" id="days_worked">
+    </div>
+    <div class="col-6 col-12-small">
+        <input type="text" name="Daily_rate" placeholder="Daily Rate" id="daily_rate">
+    </div>
+    <div class="col-6 col-12-small">
+        <input type="text" name="Deduct_amount" placeholder="Deduction Amount" id="deduction_amount">
+    </div>
+</div>
+</div>
+</form>
+<div>
+<button class="button4" onclick="add_cart()">Add Employee</button>
+</div>
+<div>
+<p id="cart"></p>
+</div>
+<form>
+<h3>Number of Employees&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspDelete Employee</h3>
+<div class="row">
+<div class="col-12-small">
+    <input type="text" id="numberofEmployees" readonly>
+</div>
+<div class="col-12-small">
+    <input type="text" id="deleteEmployee" placeholder="Number of Employee">
+</div>
+</div>
+</form>
+<div>
+<div>
+<button class="button2" onclick=clear_cart()>Clear Payroll</button2>
+<button class="button3">Delete</button>
+</div>
+
+</div>
+
+
+
+
+
+<script>
+    // Initialize Cart on Start of Page
+    function init_cart(){
+
+        cart=[];
+        document.getElementById("numberofEmployees").value=cart.length;
+        document.getElementById("cart").innerHTML="";
+
+    }
+
+    // Clear Cart
+    function clear_cart(){
+
+        init_cart();
+    }
+
+    // Add Item to Cart
+    function add_cart(){
+        
+    }
+
